@@ -3,7 +3,7 @@ import { Expose, Type } from 'class-transformer';
 import { IsEnum, IsString, Length } from 'class-validator';
 import { ApiResponse } from 'src/shared';
 
-export class PostCreateBody {
+export class PostEditBody {
   @IsString()
   @Length(1)
   title!: string;
@@ -16,13 +16,13 @@ export class PostCreateBody {
   category!: PostCategory;
 }
 
-class PostCreateResponseData {
+class PostEditResponseData {
   @Expose()
   id!: string;
 }
 
-export class PostCreateResponse extends ApiResponse {
-  @Type(() => PostCreateResponseData)
+export class PostEditResponse extends ApiResponse {
+  @Type(() => PostEditResponseData)
   @Expose()
-  data!: PostCreateResponseData;
+  data!: PostEditResponseData;
 }

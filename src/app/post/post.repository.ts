@@ -22,4 +22,13 @@ export class PostRepository {
   public async deleteById(id: string): Promise<UpdateResult> {
     return this.postRepo.softDelete({ id });
   }
+
+  public async updateById(
+    id: string,
+    payload: DeepPartial<Omit<PostEntity, 'id'>>,
+  ): Promise<PostEntity> {
+    const postEntity = this.postRepo.create({ id, ...payload });
+
+    return this.postRepo.save(postEntity);
+  }
 }

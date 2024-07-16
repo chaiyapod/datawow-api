@@ -6,9 +6,15 @@ import {
   Param,
   ParseUUIDPipe,
   Post,
+  Put,
   UseGuards,
 } from '@nestjs/common';
-import { PostCreateBody, PostCreateResponse } from './dto';
+import {
+  PostCreateBody,
+  PostCreateResponse,
+  PostEditBody,
+  PostEditResponse,
+} from './dto';
 import { PostService } from './post.service';
 
 @UseGuards(AuthGuard)
@@ -22,6 +28,18 @@ export class PostController {
     const data = await this.postService.createPost(body);
 
     return PostCreateResponse.create({ data });
+  }
+
+  @Private()
+  @Put('/:id')
+  async editPost(
+    @Param('id', ParseUUIDPipe) postId: string,
+    @User('sub') userId: string,
+    @Body() body: PostEditBody,
+  ): Promise<PostEditResponse> {
+    const data = await this.postService.editPost(postId, userId, body);
+
+    return PostEditResponse.create({ data });
   }
 
   @Private()
