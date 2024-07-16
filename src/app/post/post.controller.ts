@@ -1,6 +1,13 @@
-import { Private } from '@/shared/decorators';
-import { AuthGuard } from '@/shared/guards/auth.guard';
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { ApiResponse, AuthGuard, Private, User } from '@/shared';
+import {
+  Body,
+  Controller,
+  Delete,
+  Param,
+  ParseUUIDPipe,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { PostCreateBody, PostCreateResponse } from './dto';
 import { PostService } from './post.service';
 
@@ -15,5 +22,16 @@ export class PostController {
     const data = await this.postService.createPost(body);
 
     return PostCreateResponse.create({ data });
+  }
+
+  @Private()
+  @Delete('/:id')
+  async deletePost(
+    @Param('id', ParseUUIDPipe) postId: string,
+    @User('sub') userId: string,
+  ): Promise<ApiResponse> {
+    await this.postService.deletePost(postId, userId);
+
+    return ApiResponse.success();
   }
 }

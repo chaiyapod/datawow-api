@@ -1,5 +1,5 @@
 import { postEntities } from '@/post/entities';
-import { AuditSubscriber } from '@/shared/db';
+import { AuditSubscriber } from '@/shared';
 import { userEntities } from '@/user/entities';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
