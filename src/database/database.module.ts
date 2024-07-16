@@ -31,5 +31,6 @@ import { DataSource } from 'typeorm';
     }),
     TypeOrmModule.forFeature([...postEntities, ...userEntities]),
   ],
+  exports: [TypeOrmModule],
 })
 export class DatabaseModule {}

@@ -1,18 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ClassConstructor, ClassTransformOptions } from 'class-transformer';
-
-import { plainToInstance as originalPlainToInstance } from 'class-transformer';
-
-function plainToClass<T, V>(
-  cls: ClassConstructor<T>,
-  plain: V,
-  opts?: ClassTransformOptions,
-): T {
-  return originalPlainToInstance(cls, plain, {
-    excludeExtraneousValues: true,
-    ...opts,
-  });
-}
+import { ClassConstructor, plainToInstance } from 'class-transformer';
 
 export class IApiResponse {
   data!: unknown;
@@ -32,21 +19,21 @@ export class ApiResponse {
   }
 
   public static success(): ApiResponse {
-    const res = plainToClass(this, {});
+    const res = plainToInstance(this, {});
     res.statusCode = 200;
     res.message = 'success';
     return res;
   }
 
   public static created(): ApiResponse {
-    const res = plainToClass(this, {});
+    const res = plainToInstance(this, {});
     res.statusCode = 201;
     res.message = 'success';
     return res;
   }
 
   public static noContent(): ApiResponse {
-    const res = plainToClass(this, {});
+    const res = plainToInstance(this, {});
     res.statusCode = 204;
     res.message = 'success';
     return res;
@@ -58,9 +45,9 @@ export class ApiResponse {
       data?: unknown;
     },
   ): T {
-    const res = plainToClass(this, dataLike || {}, {
+    const res = plainToInstance(this, dataLike || {}, {
       strategy: 'exposeAll',
-      excludeExtraneousValues: false,
+      excludeExtraneousValues: true,
     });
     if (dataLike && dataLike.data === undefined) {
       res.statusCode = 404;

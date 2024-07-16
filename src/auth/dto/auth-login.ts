@@ -4,16 +4,19 @@ import { ApiResponse } from 'src/shared';
 
 export class AuthLoginBody {
   @IsString()
-  id!: string;
+  username!: string;
 }
 
-class AuthLoginBodyResponseData extends ApiResponse {
+class AuthLoginResponseData {
+  @Expose()
+  username!: string;
+
   @Expose()
   accessToken!: string;
 }
 
-export class AuthLoginBodyResponse extends ApiResponse {
-  @Type(() => AuthLoginBodyResponseData)
+export class AuthLoginResponse extends ApiResponse {
+  @Type(() => AuthLoginResponseData)
   @Expose()
-  data!: AuthLoginBodyResponseData;
+  data!: AuthLoginResponseData;
 }

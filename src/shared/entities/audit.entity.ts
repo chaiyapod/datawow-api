@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import {
   Column,
   CreateDateColumn,
@@ -11,12 +10,6 @@ export class AuditEntity {
     name: 'created_at',
     type: 'timestamp',
     nullable: false,
-    transformer: {
-      from: (value) => {
-        return dayjs(value).unix();
-      },
-      to: (value) => value,
-    },
   })
   createdAt!: number;
 
@@ -30,10 +23,6 @@ export class AuditEntity {
     name: 'updated_at',
     type: 'timestamp',
     nullable: false,
-    transformer: {
-      from: (value) => dayjs(value).unix(),
-      to: (value) => value,
-    },
   })
   updatedAt!: number;
 
@@ -47,10 +36,6 @@ export class AuditEntity {
     name: 'deleted_at',
     type: 'timestamp',
     select: false,
-    transformer: {
-      from: (value) => dayjs(value).unix(),
-      to: (value) => value,
-    },
   })
   deletedAt?: number;
 
