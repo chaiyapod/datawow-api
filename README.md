@@ -43,6 +43,7 @@ repository - ติดต่อกับ database
 
 แต่ละ module จะทำหน้าที่แค่ตาม domain ของตัวเองเท่านั้น ถ้าต้องการเข้าถึง db ของ domain อื่นต้องเรียกผ่าน contact point หรือ service ข้าม domain
 
+set alias import path เพื่อให้ import เป็นระเบียบ
 
 ### Lib or dependency
 folder constants เอาไว้เก็บ constant ต่างๆ

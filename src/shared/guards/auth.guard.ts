@@ -1,7 +1,6 @@
 import {
   CanActivate,
   ExecutionContext,
-  Inject,
   Injectable,
   InternalServerErrorException,
   Logger,
@@ -11,9 +10,9 @@ import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
 import * as jwt from 'jsonwebtoken';
 
-import { ClsService } from 'nestjs-cls';
 import { IS_PRIVATE_API } from '../decorators/private';
 import { UserToken } from '../types';
+import { UserContext } from '../user-context';
 
 declare module 'express' {
   interface Request {
@@ -24,8 +23,7 @@ declare module 'express' {
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
-    @Inject(ClsService)
-    private readonly cls: ClsService,
+    private readonly contextStore: UserContext,
     private readonly reflector: Reflector,
   ) {}
 
@@ -45,8 +43,10 @@ export class AuthGuard implements CanActivate {
 
       req.user = payload as UserToken;
 
-      this.cls.set('userId', payload.sub);
-      this.cls.set('username', payload.username);
+      if (payload) {
+        this.contextStore.userId = payload.sub;
+        this.contextStore.username = payload.username;
+      }
 
       return true;
     } catch (error) {

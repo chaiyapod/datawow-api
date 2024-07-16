@@ -1,4 +1,3 @@
-import { ClsService } from 'nestjs-cls';
 import {
   DataSource,
   EntitySubscriberInterface,
@@ -8,12 +7,13 @@ import {
   UpdateEvent,
 } from 'typeorm';
 import { AuditEntity } from '../entities';
+import { UserContext } from '../user-context';
 
 @EventSubscriber()
 export class AuditSubscriber implements EntitySubscriberInterface<AuditEntity> {
   constructor(
     dataSource: DataSource,
-    private readonly cls: ClsService,
+    private readonly contextStore: UserContext,
   ) {
     dataSource.subscribers.push(this);
   }
@@ -23,20 +23,20 @@ export class AuditSubscriber implements EntitySubscriberInterface<AuditEntity> {
   }
 
   beforeInsert(event: InsertEvent<AuditEntity>): void {
-    event.entity.createdById = this.cls.get('userId');
-    event.entity.createdByName = this.cls.get('username');
+    event.entity.createdById = this.contextStore.userId;
+    event.entity.createdByName = this.contextStore.username;
   }
 
   beforeUpdate(event: UpdateEvent<AuditEntity>): void {
     if (!event.entity) return;
 
-    event.entity['updatedById'] = this.cls.get('userId');
-    event.entity['updatedByName'] = this.cls.get('username');
+    event.entity['updatedById'] = this.contextStore.userId;
+    event.entity['updatedByName'] = this.contextStore.username;
   }
 
   beforeSoftRemove(event: RemoveEvent<AuditEntity>): void {
     if (!event.entity) return;
 
-    event.entity['updatedById'] = this.cls.get('userId');
+    event.entity['updatedById'] = this.contextStore.userId;
   }
 }

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { ClsModule } from 'nestjs-cls';
+import { UserContextModule } from '@/shared/user-context/user-context.module';
 import { AuthModule } from './auth';
 import { DatabaseModule } from './database';
 import { PostModule } from './post';
@@ -9,7 +9,7 @@ import { UserModule } from './user';
 
 @Module({
   imports: [
-    ClsModule.forRoot({ global: true, middleware: { mount: true } }),
+    UserContextModule,
     ConfigModule.forRoot({ isGlobal: true }),
     PostModule,
     AuthModule,
