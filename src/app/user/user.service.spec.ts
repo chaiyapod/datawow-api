@@ -24,7 +24,7 @@ describe('UserService', () => {
     it('should return user successfully', async () => {
       const mockUser = createMockUserEntity('test');
 
-      mockUserRepository.findByUsername.mockResolvedValue(mockUser);
+      mockUserRepository.getByUsername.mockResolvedValue(mockUser);
 
       const actual = await service.findUserByUsername('test');
 
@@ -32,7 +32,7 @@ describe('UserService', () => {
     });
 
     it('should return null when user not found successfully', async () => {
-      mockUserRepository.findByUsername.mockResolvedValue(null);
+      mockUserRepository.getByUsername.mockResolvedValue(null);
 
       const actual = await service.findUserByUsername('test');
 

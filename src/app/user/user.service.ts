@@ -9,6 +9,6 @@ export class UserService {
   public async findUserByUsername(
     username: string,
   ): Promise<UserEntity | null> {
-    return await this.userRepository.findByUsername(username);
+    return await this.userRepository.getByUsername(username);
   }
 }

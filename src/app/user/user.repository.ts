@@ -10,7 +10,7 @@ export class UserRepository {
     private readonly userRepo: Repository<UserEntity>,
   ) {}
 
-  public async findByUsername(username: string): Promise<UserEntity | null> {
+  public async getByUsername(username: string): Promise<UserEntity | null> {
     return await this.userRepo.findOne({ where: { username } });
   }
 }
