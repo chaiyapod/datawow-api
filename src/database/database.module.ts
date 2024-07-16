@@ -22,6 +22,7 @@ import { DataSource } from 'typeorm';
           ? JSON.parse(process.env.TYPEORM_LOGGING)
           : false,
         autoLoadEntities: true,
+        entities: [`${__dirname}/../**/**.entity{.ts}`],
       }),
       dataSourceFactory: async (options) => {
         if (!options) throw new Error('invalid options typeorm');
