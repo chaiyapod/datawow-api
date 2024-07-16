@@ -1,4 +1,5 @@
 import { postEntities } from '@/post/entities';
+import { AuditSubscriber } from '@/shared/db';
 import { userEntities } from '@/user/entities';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -31,6 +32,7 @@ import { DataSource } from 'typeorm';
     }),
     TypeOrmModule.forFeature([...postEntities, ...userEntities]),
   ],
+  providers: [AuditSubscriber],
   exports: [TypeOrmModule],
 })
 export class DatabaseModule {}

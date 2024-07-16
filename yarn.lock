@@ -2903,6 +2903,7 @@ __metadata:
     eslint-plugin-prettier: "npm:^5.0.0"
     jest: "npm:^29.5.0"
     jest-mock-extended: "npm:^3.0.7"
+    nestjs-cls: "npm:^4.3.0"
     pg: "npm:^8.12.0"
     prettier: "npm:^3.0.0"
     reflect-metadata: "npm:^0.2.0"
@@ -5641,6 +5642,18 @@ __metadata:
   version: 2.6.2
   resolution: "neo-async@npm:2.6.2"
   checksum: 10c0/c2f5a604a54a8ec5438a342e1f356dff4bc33ccccdb6dc668d94fe8e5eccfc9d2c2eea6064b0967a767ba63b33763f51ccf2cd2441b461a7322656c1f06b3f5d
+  languageName: node
+  linkType: hard
+
+"nestjs-cls@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "nestjs-cls@npm:4.3.0"
+  peerDependencies:
+    "@nestjs/common": "> 7.0.0 < 11"
+    "@nestjs/core": "> 7.0.0 < 11"
+    reflect-metadata: "*"
+    rxjs: ">= 7"
+  checksum: 10c0/40e2a62a0f4ed5685a81e3b35c80d46c6a85057bc1c8428bdabc552bdd24b43fdc6855716b6ef9912a4971d757c6b341590a9101b68f471b13a4aa5b542f5284
   languageName: node
   linkType: hard
 
