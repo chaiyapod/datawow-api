@@ -1,4 +1,4 @@
-import { UserEntity } from '../entities/user.entity';
+import { UserEntity } from '../entities';
 
 export function createMockUserEntity(username = 'dummy'): UserEntity {
   const mockDate = Date.now();

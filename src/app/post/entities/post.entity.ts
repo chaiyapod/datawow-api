@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-import { PostCategory } from 'src/constants';
-import { AuditEntity } from 'src/shared';
+import { PostCategory } from '@/constants';
+import { AuditEntity } from '@/shared';
 import { PostCommentEntity } from './post-comment.entity';
 
 @Entity()

@@ -1,4 +1,4 @@
-import { AuditEntity } from 'src/shared';
+import { AuditEntity } from '@/shared';
 import {
   Column,
   Entity,

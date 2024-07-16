@@ -1,8 +1,8 @@
+import { createMockUserEntity, UserService } from '@/user';
 import { UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 import { mock } from 'jest-mock-extended';
-import { createMockUserEntity, UserService } from 'src/user';
 import { AuthService } from './auth.service';
 
 describe('AuthService', () => {

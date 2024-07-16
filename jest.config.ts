@@ -11,6 +11,11 @@ const config: Config.InitialOptions = {
   coveragePathIgnorePatterns: ['src/server/console', 'src/server/migration'],
   coverageDirectory: 'coverage',
   testEnvironment: 'node',
+  moduleNameMapper: {
+    '^@/shared': '<rootDir>/src/shared',
+    '^@/constants': '<rootDir>/src/constants',
+    '^@/(.*)$': '<rootDir>/src/app/$1',
+  },
 };
 
 export default config;

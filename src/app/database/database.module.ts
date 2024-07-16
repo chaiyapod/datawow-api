@@ -1,7 +1,7 @@
+import { postEntities } from '@/post';
+import { userEntities } from '@/user';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { postEntities } from 'src/post';
-import { userEntities } from 'src/user';
 import { DataSource } from 'typeorm';
 
 @Module({
