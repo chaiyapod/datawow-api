@@ -4,7 +4,7 @@ import { ApiResponse } from 'src/shared';
 
 export class AuthLoginBody {
   @IsString()
-  id: string;
+  id!: string;
 }
 
 class AuthLoginBodyResponseData extends ApiResponse {
