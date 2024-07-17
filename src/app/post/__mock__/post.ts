@@ -10,7 +10,6 @@ export function createMockPostEntity({
   id,
   title = 'title',
   content = 'content',
-  audit = 'dummy',
   comments = [],
   category = PostCategory.Exercise,
 }: {
@@ -30,10 +29,8 @@ export function createMockPostEntity({
     comments,
     createdAt: mockDate,
     createdById: '1',
-    createdByName: audit,
     updatedAt: mockDate,
     updatedById: '1',
-    updatedByName: audit,
   };
 }
 

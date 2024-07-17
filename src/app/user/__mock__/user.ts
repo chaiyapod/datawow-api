@@ -7,10 +7,8 @@ export function createMockUserEntity(username = 'dummy'): UserEntity {
     username,
     createdAt: mockDate,
     createdById: '1',
-    createdByName: 'admin',
     updatedAt: mockDate,
     updatedById: '1',
-    updatedByName: 'admin',
   };
 }
 

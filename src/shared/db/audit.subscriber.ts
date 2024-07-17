@@ -24,14 +24,12 @@ export class AuditSubscriber implements EntitySubscriberInterface<AuditEntity> {
 
   beforeInsert(event: InsertEvent<AuditEntity>): void {
     event.entity.createdById = this.contextStore.userId;
-    event.entity.createdByName = this.contextStore.username;
   }
 
   beforeUpdate(event: UpdateEvent<AuditEntity>): void {
     if (!event.entity) return;
 
     event.entity['updatedById'] = this.contextStore.userId;
-    event.entity['updatedByName'] = this.contextStore.username;
   }
 
   beforeSoftRemove(event: RemoveEvent<AuditEntity>): void {

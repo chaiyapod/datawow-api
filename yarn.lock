@@ -2904,6 +2904,7 @@ __metadata:
     jest: "npm:^29.5.0"
     jest-mock-extended: "npm:^3.0.7"
     nestjs-cls: "npm:^4.3.0"
+    nestjs-command: "npm:^3.1.4"
     pg: "npm:^8.12.0"
     prettier: "npm:^3.0.0"
     reflect-metadata: "npm:^0.2.0"
@@ -5162,6 +5163,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.compact@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "lodash.compact@npm:3.0.1"
+  checksum: 10c0/9cc32065f1a9aa90bf3caa987fb7e00f8b90a49209e7f9f37c601e595f396a83ebe8f3328b2ef7f365cf822c9f21697527620c9c9c9734f107453b4c6c4dd810
+  languageName: node
+  linkType: hard
+
+"lodash.flattendeep@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "lodash.flattendeep@npm:4.4.0"
+  checksum: 10c0/83cb80754b921fb4ed2c222b91a82b2524f3bdc60c3ae91e00688bd4bf1bcc28b8a2cc250e11fdc1b6da3a2de09e57008e13f15a209cafdd4f9163d047f97544
+  languageName: node
+  linkType: hard
+
 "lodash.includes@npm:^4.3.0":
   version: 4.3.0
   resolution: "lodash.includes@npm:4.3.0"
@@ -5654,6 +5669,22 @@ __metadata:
     reflect-metadata: "*"
     rxjs: ">= 7"
   checksum: 10c0/40e2a62a0f4ed5685a81e3b35c80d46c6a85057bc1c8428bdabc552bdd24b43fdc6855716b6ef9912a4971d757c6b341590a9101b68f471b13a4aa5b542f5284
+  languageName: node
+  linkType: hard
+
+"nestjs-command@npm:^3.1.4":
+  version: 3.1.4
+  resolution: "nestjs-command@npm:3.1.4"
+  dependencies:
+    lodash.compact: "npm:^3.0.1"
+    lodash.flattendeep: "npm:^4.4.0"
+  peerDependencies:
+    "@nestjs/common": ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
+    "@nestjs/core": ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
+    yargs: ^16.0.0 || ^17.0.0
+  bin:
+    nestjs-command: bin/cli
+  checksum: 10c0/6679218c1929f866a88bb34c7241cdae7ce2fbe7c503f12210b82390e0de666e5dc906e824b8372355513620bb0cfc75dd1e2eacc03c9c7381dca2cb97214f53
   languageName: node
   linkType: hard
 

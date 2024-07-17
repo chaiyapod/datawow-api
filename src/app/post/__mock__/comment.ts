@@ -3,7 +3,6 @@ import { PostCommentEntity } from '../entities';
 export function createMockPostCommentEntity(
   postId: string,
   comment = 'comment',
-  audit = 'dummy',
 ): PostCommentEntity {
   const mockDate = Date.now();
   return {
@@ -12,10 +11,8 @@ export function createMockPostCommentEntity(
     postId,
     createdAt: mockDate,
     createdById: '1',
-    createdByName: audit,
     updatedAt: mockDate,
     updatedById: '1',
-    updatedByName: audit,
   };
 }
 

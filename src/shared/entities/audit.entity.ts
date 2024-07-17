@@ -13,11 +13,8 @@ export class AuditEntity {
   })
   createdAt!: number;
 
-  @Column({ name: 'created_by_id', type: 'varchar', nullable: false })
+  @Column({ name: 'created_by_id', type: 'uuid', nullable: false })
   createdById!: string;
-
-  @Column({ name: 'created_by_name', type: 'varchar', nullable: false })
-  createdByName!: string;
 
   @UpdateDateColumn({
     name: 'updated_at',
@@ -26,11 +23,8 @@ export class AuditEntity {
   })
   updatedAt!: number;
 
-  @Column({ name: 'updated_by_id', type: 'varchar', nullable: true })
+  @Column({ name: 'updated_by_id', type: 'uuid', nullable: true })
   updatedById?: string;
-
-  @Column({ name: 'updated_by_name', type: 'varchar', nullable: true })
-  updatedByName?: string;
 
   @DeleteDateColumn({
     name: 'deleted_at',
