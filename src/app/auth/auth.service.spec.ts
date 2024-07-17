@@ -26,7 +26,8 @@ describe('AuthService', () => {
 
   describe('login', () => {
     it('should return username and token when logged in successfully', async () => {
-      mockUserService.findUserByUsername.mockResolvedValue(mockUser);
+      const findUserFn =
+        mockUserService.findUserByUsername.mockResolvedValue(mockUser);
       const jwtSign = mockJwtService.sign.mockReturnValue('jwt');
 
       const body = { username: 'test' };
@@ -34,15 +35,18 @@ describe('AuthService', () => {
       const actual = await service.login(body);
 
       expect(actual).toEqual({ user: mockUser, token: 'jwt' });
+      expect(findUserFn).toHaveBeenCalledWith('test');
       expect(jwtSign).toHaveBeenCalledWith({ sub: '2', username: 'test' });
     });
 
     it('should throw unauthorized error when user not found', async () => {
-      mockUserService.findUserByUsername.mockResolvedValue(null);
+      const findUserFn =
+        mockUserService.findUserByUsername.mockResolvedValue(null);
 
       const body = { username: 'test' };
 
       await expect(service.login(body)).rejects.toThrow(UnauthorizedException);
+      expect(findUserFn).toHaveBeenCalledWith('test');
     });
   });
 });
