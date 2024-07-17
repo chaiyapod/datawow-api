@@ -62,8 +62,10 @@ folder shared เก็บ function/lib/... ต่างๆที่ใช้ร
 - ทำ Event hook ร่วมกับ Cls เพื่อทำ audit log ใน db เปรียบเหมือนทำ context โดยไม่ต้องส่ง context ต่อกันเรื่อยๆ
 - สร้าง base response interface มา เพื่อจัดการกับ response pattern ได้ง่าย เป็น centerilze
 - สร้าง decorator user มาเพื่อดึง property user จาก req 
+- สามารถ seed user เข้า database ได้
 
 ## Extra lib
 - typeORM - ใช้เป็น orm ในการติดต่อกับ db
 - class-validator ใช้ validate request
 - class-transformer ใช้ omit data ออกจาก runtime ตอนจังหวะ response
+- nestjs-command ใช้ทำ cli ในการ seeding user หรือ initial user สำหรับเทส
