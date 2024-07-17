@@ -7,6 +7,15 @@
 yarn
 ```
 
+## Seed User
+```bash
+yarn seed <username>
+
+example
+
+yarn seed admin
+```
+
 ## Running the app
 
 ```bash
@@ -58,4 +67,3 @@ folder shared เก็บ function/lib/... ต่างๆที่ใช้ร
 - typeORM - ใช้เป็น orm ในการติดต่อกับ db
 - class-validator ใช้ validate request
 - class-transformer ใช้ omit data ออกจาก runtime ตอนจังหวะ response
-- 
