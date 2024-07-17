@@ -15,7 +15,7 @@ export class UserCommand {
     command: 'seed:user <username>',
     describe: 'seed user into db',
   })
-  async create(
+  async seed(
     @Positional({
       name: 'username',
       describe: 'the username',
