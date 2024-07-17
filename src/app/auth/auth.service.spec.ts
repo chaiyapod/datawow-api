@@ -1,4 +1,4 @@
-import { createMockUserEntity, UserService } from '@/user';
+import { mockUser, UserService } from '@/user';
 import { UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
@@ -25,17 +25,16 @@ describe('AuthService', () => {
   });
 
   describe('login', () => {
-    it('should return username and token successfully', async () => {
-      const mockUser = createMockUserEntity('test');
-
+    it('should return username and token when logged in successfully', async () => {
       mockUserService.findUserByUsername.mockResolvedValue(mockUser);
-      mockJwtService.sign.mockReturnValue('jwt');
+      const jwtSign = mockJwtService.sign.mockReturnValue('jwt');
 
       const body = { username: 'test' };
 
       const actual = await service.login(body);
 
       expect(actual).toEqual({ user: mockUser, token: 'jwt' });
+      expect(jwtSign).toHaveBeenCalledWith({ sub: '2', username: 'test' });
     });
 
     it('should throw unauthorized when user not found', async () => {

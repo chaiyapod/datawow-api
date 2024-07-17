@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { mock } from 'jest-mock-extended';
-import { createMockUserEntity } from './__mock__';
+import { mockUser } from './__mock__';
 import { UserRepository } from './user.repository';
 import { UserService } from './user.service';
 
@@ -21,9 +21,7 @@ describe('UserService', () => {
   });
 
   describe('findUserByUsername', () => {
-    it('should return user successfully', async () => {
-      const mockUser = createMockUserEntity('test');
-
+    it('should return user when fined successfully', async () => {
       mockUserRepository.getByUsername.mockResolvedValue(mockUser);
 
       const actual = await service.findUserByUsername('test');

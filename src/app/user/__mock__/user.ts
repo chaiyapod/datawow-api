@@ -13,3 +13,5 @@ export function createMockUserEntity(username = 'dummy'): UserEntity {
     updatedByName: 'admin',
   };
 }
+
+export const mockUser = createMockUserEntity('test');
