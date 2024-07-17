@@ -23,8 +23,6 @@ export class PostService {
     this.validateOwner(userId, post);
 
     await this.postRepository.deleteById(post.id);
-
-    return;
   }
 
   public async editPost(

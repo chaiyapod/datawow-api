@@ -37,7 +37,7 @@ export function createMockPostEntity({
   };
 }
 
-export const mockPost = createMockPostEntity({
+export const mockPost1 = createMockPostEntity({
   id: '1',
   comments: [mockComment1post1, mockComment2post1, mockComment3post1],
 });

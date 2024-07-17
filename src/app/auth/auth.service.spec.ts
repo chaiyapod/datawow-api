@@ -37,7 +37,7 @@ describe('AuthService', () => {
       expect(jwtSign).toHaveBeenCalledWith({ sub: '2', username: 'test' });
     });
 
-    it('should throw unauthorized when user not found', async () => {
+    it('should throw unauthorized error when user not found', async () => {
       mockUserService.findUserByUsername.mockResolvedValue(null);
 
       const body = { username: 'test' };

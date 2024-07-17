@@ -1,7 +1,8 @@
 import { PostCategory } from '@/constants';
+import { BadRequestException, NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { mock } from 'jest-mock-extended';
-import { createMockPostEntity } from './__mock__';
+import { createMockPostEntity, mockPost1 } from './__mock__';
 import { PostRepository } from './post.repository';
 import { PostService } from './post.service';
 
@@ -17,11 +18,12 @@ describe('PostService', () => {
         { provide: PostRepository, useValue: mockPostRepository },
       ],
     }).compile();
+
     service = module.get<PostService>(PostService);
   });
 
   describe('createPost', () => {
-    it('should return post id  when create post successfully', async () => {
+    it('should return post id when create post successfully', async () => {
       const mockPostWithEmptyComment = createMockPostEntity({
         id: '1',
         title: 'test',
@@ -40,6 +42,36 @@ describe('PostService', () => {
       const actual = await service.createPost(body);
 
       expect(actual).toEqual({ id: '1' });
+    });
+  });
+
+  describe('deletePost', () => {
+    it('should return void when delete own post successfully', async () => {
+      mockPostRepository.getById.mockResolvedValue(mockPost1);
+      mockPostRepository.deleteById.mockResolvedValue({
+        generatedMaps: [],
+        raw: '',
+      });
+
+      const actual = await service.deletePost('1', '1');
+
+      expect(actual).toBeFalsy();
+    });
+
+    it('should throw not found error when post not found', async () => {
+      mockPostRepository.getById.mockResolvedValue(null);
+
+      await expect(service.deletePost('1', '1')).rejects.toThrow(
+        NotFoundException,
+      );
+    });
+
+    it('should throw bad request error when user delete not own post', async () => {
+      mockPostRepository.getById.mockResolvedValue(mockPost1);
+
+      await expect(service.deletePost('1', '2')).rejects.toThrow(
+        BadRequestException,
+      );
     });
   });
 });
